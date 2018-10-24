@@ -218,7 +218,100 @@ def fonly():
             Followers = browser.find_element_by_xpath("""//*[@id="react-root"]/section/main/div/header/section/ul/li[2]/a""").click()
             time.sleep(8)
 
-    
+
+
+def post_and_comment_liking():
+    h = 0
+    a = 0
+    b = 0
+    c = 0
+    total = 0
+    hashtags = 100
+    posts = 200
+    hashtag = [ "#modelphotography" , "#model" , "#modellife" , "#modelling" , "#modeling" , "#photography" , "#modelingagency" ,
+     "#modelagency" , "#supermodel" , "#modelmanagement" , "#fashionmodel" , "#photomodel" , "#portrait" , "#fashionmodels" ,
+      "#fashion" , "#models" , "#portraitphotography" , "#photo" , "#fashionphotography" , "#femalemodel" , "#modelo" , "#modeltest" ,
+       "#fitmodel" , "#portraits" , "#like" , "#altgirl" , "#beautiful" , "#modelscout" , "#altmodel" , "#bhfyp" , "#ig" , "#testshoot" ,
+        "#malemodels" , "#photoshoot" , "#modelsearch" , "#modelshoot" , "#modelos" , "#magazine" , "#prilaga" , "#photos" , "#pose" ,
+         "#modelswanted" , "#modelstatus" , "#sexymodel" , "#follow" , "#face" , "#photoshooting" , "#photooftheday" , "#instamodel" ,
+          "#fashionblogger" , "#bikinigirl" , "#wow" , "#camera" , "#poses" , "#posing" , "#photomodeling" , "#photogenic" ,
+           "#fashioneditorial" , "#nikon" , "#beachbody" , "#model" , "#modeling" , "#highfashion" , "#pretty" , "#beautiful" ,
+            "#sexy" , "#face" , "#beauty" , "#photoshoot" , "#studio" , "#studiolife" , "#bostonmodel" , "(or" , "wherever" ,
+             "you’re" , "from)" , "#fashion" , "#editorial" , "#instamodel" , "#modeltowatch" , "#instamag" , "#magazine" ,
+              "#catwalk" , "#runway" , "#fashionshow" , "#clavicles" , "#boudoir" , "#catalog" , "#vogue" , "#MAKEUP" , "#MUA" ,
+               "#MAKEUPARTIST" , "#COSMETICS" , "#EYESHADOW" , "#EYES" , "#LIPS" , "#LIPSTICK" , "#MAKEUPADDICT" , "#MAKEUPJUNKIE" ,
+                "#INSTAMAKEUP" , "#BEAUTIFUL" , "#BYME" , "#LOVE" , "#FACE" , "#PRETTY" , "#PICOFTHEDAY" , "#BLUSH" , "#HAIR" , "#FACE" ,
+                 "#STYLIST" , "#STYLE" , "#WEDDING" , "#PORTRAIT" , "#BEAUTY" , "#ONFLEEK" , "#ONPOINT"]
+
+    print('starting to like posts')
+    while a < hashtags: #hashtags number of hashtags to be searched
+        try:
+            browser.refresh()
+            time.sleep(5)
+            print('hashtags')
+            #search hashtage
+            searchUser = browser.find_element_by_class_name('XTCLo') # enter user name #XTCLo #x3qfX 
+            time.sleep(3)
+            searchUser.send_keys(hashtag[a])
+            time.sleep(5)
+            #select hashtag
+            selecthandle = browser.find_element_by_xpath("""//*[@id="react-root"]/section/nav/div[2]/div/div/div[2]/div[2]/div[2]/div/a[1]""").click()
+            time.sleep(10)    
+            story = browser.find_element_by_class_name('v1Nh3') #select first story
+            story.click()
+            print('first story selectd')
+            time.sleep(3)
+           
+
+            #select first post
+            while b < posts: #posts number of posts to be liked for each hashtag
+                print(hashtag[a])
+                try:
+                    print('liking Comments')
+                    #like post comments 20 of them
+                    comlike = browser.find_element_by_class_name('coreSpriteCommentLike')
+                    comlike.click()
+                    total += 1
+                    time.sleep(5)
+
+                    
+
+                except:
+                    print('fail cycle, pass')
+                    pass
+
+                finally:
+                    print(b)
+                    b += 1
+                    time.sleep(2)
+                    # a += 1 next hashtage to be searched
+                    
+                if b % 20 == 0:
+                    try:
+                        heart = browser.find_element_by_class_name('glyphsSpriteHeart__outline__24__grey_9') #like story
+                        heart.click()
+                        print('Post liked')
+                        time.sleep(2)
+                        total += 1
+                        rightArrow = browser.find_element_by_class_name('HBoOv') #click right arrow to scroll through discovery feed
+                        time.sleep(2)
+                        rightArrow.click()
+                        print('right arrow')
+                    except:
+                        pass
+
+        except:
+            print('pass')
+            pass
+
+        finally: # b reset for next loop. 
+            print(hashtag[a] + ' cycle finished')
+            print(a)
+            print('total likes ' + total)
+            b = 0
+            a += 1
+            time.sleep(2)
+            
     
 def Uonly():
     b = 0
@@ -265,15 +358,16 @@ master = Tk()
 Label(master, text="User Name").grid(row=0)
 Label(master, text="Password").grid(row=1)
 Label(master, text="List from this User").grid(row=2)
+Label(master, text="Profile to like comments").grid(row=11)
 #Label(master, text="How many people to follow?").grid(row=3)
 #Label(master, text="cycle wait time").grid(row=4)
 
 submit = Button(master, text = 'Log In', command = Run_Program).grid(row=6)
-CustomF = Button(master, text = 'Follow Unfollow Cycle', command = PFPU).grid(row=7)
-like1 = Button(master, text = 'like', command = like).grid(row=8)
-Unfollow = Button(master, text = 'Unfollow Onyl', command = Uonly).grid(row=9)
-followonly = Button(master, text = 'Follow Only', command = fonly).grid(row=10)
-commenting = Button(master, text = 'commenting', command = comment).grid(row=12)
+CustomF = Button(master, text = 'Follow Unfollow Cycle', command = PFPU).grid(row=10)
+like1 = Button(master, text = 'like comments', command = like).grid(row=12)
+Unfollow = Button(master, text = 'Unfollow Only', command = Uonly).grid(row=8)
+followonly = Button(master, text = 'Follow Only', command = fonly).grid(row=7)
+commenting = Button(master, text = 'like all', command = post_and_comment_liking).grid(row=13)
 
 e1 = Entry(master)
 e2 = Entry(master)
