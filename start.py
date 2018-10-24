@@ -292,6 +292,11 @@ def post_and_comment_liking():
                         heart.click()
                         print('Post liked')
                         time.sleep(2)
+                        comment = browser.find_element_by_xpath('/html/body/div[3]/div/div[2]/div/article/div[2]/section[3]/div/form/textarea')
+                        comment.send_keys('this is awesome! @offerohandbags #love #offerohandbags')
+                        time.sleep(1)
+                        comment.submit()
+                        time.sleep(1)
                         total += 1
                         rightArrow = browser.find_element_by_class_name('HBoOv') #click right arrow to scroll through discovery feed
                         time.sleep(2)
