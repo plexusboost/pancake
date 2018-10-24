@@ -90,13 +90,15 @@ def like(): # 20,000 comments liked at the end
                             time.sleep(2)
                             
                             
+                            
                         except:
                             print('fail cycle, pass1')
                             pass
                         finally:
                             e += 1
                             print(e)
-                            time.sleep(5)
+                            time.sleep(5)                      
+                            
                 except:
                     print('fail cycle, pass2')
                     pass
@@ -105,6 +107,20 @@ def like(): # 20,000 comments liked at the end
                     e = 0
                     d += 1
                     print(d)
+                    print('com')
+                    heart = browser.find_element_by_class_name('glyphsSpriteHeart__outline__24__grey_9') #like story
+                    heart.click()
+                    print('Post liked')
+                    time.sleep(2)
+                    print('com1')
+                    selectcom = browser.find_element_by_xpath('/html/body/div[2]/div/div[2]/div/article/div[2]/section[1]/span[2]/button/span').click()
+                    time.sleep(1)
+                    commenthashtag = browser.find_element_by_xpath('/html/body/div[2]/div/div[2]/div/article/div[2]/section[3]/div/form/textarea')
+                    commenthashtag.send_keys('@offerohandbags this is awesome')
+                    commenthashtag.submit()
+                    print('com2')
+                    time.sleep(4)
+                    time.sleep(1)
                     rightArrow = browser.find_element_by_class_name('HBoOv') #click right arrow to scroll through discovery feed
                     time.sleep(2)
                     rightArrow.click()
@@ -228,23 +244,25 @@ def post_and_comment_liking():
     total = 0
     hashtags = 100
     posts = 200
-    hashtag = [ "#modelphotography" , "#model" , "#modellife" , "#modelling" , "#modeling" , "#photography" , "#modelingagency" ,
-     "#modelagency" , "#supermodel" , "#modelmanagement" , "#fashionmodel" , "#photomodel" , "#portrait" , "#fashionmodels" ,
-      "#fashion" , "#models" , "#portraitphotography" , "#photo" , "#fashionphotography" , "#femalemodel" , "#modelo" , "#modeltest" ,
-       "#fitmodel" , "#portraits" , "#like" , "#altgirl" , "#beautiful" , "#modelscout" , "#altmodel" , "#bhfyp" , "#ig" , "#testshoot" ,
-        "#malemodels" , "#photoshoot" , "#modelsearch" , "#modelshoot" , "#modelos" , "#magazine" , "#prilaga" , "#photos" , "#pose" ,
-         "#modelswanted" , "#modelstatus" , "#sexymodel" , "#follow" , "#face" , "#photoshooting" , "#photooftheday" , "#instamodel" ,
-          "#fashionblogger" , "#bikinigirl" , "#wow" , "#camera" , "#poses" , "#posing" , "#photomodeling" , "#photogenic" ,
-           "#fashioneditorial" , "#nikon" , "#beachbody" , "#model" , "#modeling" , "#highfashion" , "#pretty" , "#beautiful" ,
-            "#sexy" , "#face" , "#beauty" , "#photoshoot" , "#studio" , "#studiolife" , "#bostonmodel" , "(or" , "wherever" ,
-             "you’re" , "from)" , "#fashion" , "#editorial" , "#instamodel" , "#modeltowatch" , "#instamag" , "#magazine" ,
-              "#catwalk" , "#runway" , "#fashionshow" , "#clavicles" , "#boudoir" , "#catalog" , "#vogue" , "#MAKEUP" , "#MUA" ,
-               "#MAKEUPARTIST" , "#COSMETICS" , "#EYESHADOW" , "#EYES" , "#LIPS" , "#LIPSTICK" , "#MAKEUPADDICT" , "#MAKEUPJUNKIE" ,
-                "#INSTAMAKEUP" , "#BEAUTIFUL" , "#BYME" , "#LOVE" , "#FACE" , "#PRETTY" , "#PICOFTHEDAY" , "#BLUSH" , "#HAIR" , "#FACE" ,
-                 "#STYLIST" , "#STYLE" , "#WEDDING" , "#PORTRAIT" , "#BEAUTY" , "#ONFLEEK" , "#ONPOINT"]
+    hashtag = ["#handbags" , "#fashion" , "#bags" , "#handbag" , "#bag" , "#accessories" , "#shopping" , "#purse" , "#style" , "#clutch" , "#shoes" , "#fashionista" , "#instagood" , "#luxury" , "#backpack" , "#fashionblogger" , "#ootd" , "#purses" , "#wallet" , "#slingbag" , "#love" , "#totebag" , "#onlineshopping" , "#handmade" , "#luxurybag" , "#fashionbag" , "#womensfashion" , "#instafashion" , "#sunglasses" , "#bhfyp" , "#handbagsforsale" , "#instastyle" , "#watches" , "#leather" , "#summer" , "#leatherbags" , "#wallets" , "#clutchbag" , "#luxurybags" , "#designer" , "#dress" , "#belts" , "#designerbags" , "#womenbags" , "#satchel" , "#jewelry" , "#clutches" , "#trendy" , "#leatherbag" , "#fashionstyle" , "#handbagshop" , "#folow" , "#slingbags" , "#gucci" , "#crossbodybag" , "#classy" , "#sale" , "#fashionbags" , "#highquality" , "#unique" , "#luxury" , "#fashion" , "#gucci" , "#chanel" , "#style" , "#luxurylife" , "#love" , "#yeezy" , "#hermes" , "#prada" , "#dior" , "#luxurylifestyle" , "#summer" , "#chanelbag" , "#lv" , "#cute" , "#design" , "#louisvuitton" , "#instagood" , "#beautiful" , "#lifestyle" , "#givenchy" , "#gift" , "#interiordesign" , "#best" , "#Valentino" , "#luxuryshoes" , "#guccimarmont" , "#fendi" , "#bhfyp" , "#burberry" , "#cheap" , "#v" , "#bags" , "#bag" , "#interior" , "#christianlouboutin" , "#miumiushoes" , "#slippers" , "#Balenciaga" , "#Gucci" , "#McQueen" , "#McQueenshoes" , "#Valentinosandals" , "#redsoles" , "#chanelsandals" , "#shoes" , "#giuseppezanotti" , "#buscemi" , "#Fendi" , "#pensonalshipping" , "#philippines" , "#Chanel" , "#balenciagasneakers" , "#sandals" , "#louisvuittonshoes" , "#givenchyshoes" , "#instapic" , "#guccidionysus" , "#fashionblogger" , "#acting" , "#actors" , "#auditions" , "#friends" , "#casting" , "#peace" , "#yoga" , "#science" , "#equality" , "#mindfulness" , "#meditation" , "#evolution" , "#resist" , "#stevennbeck" , "#peacesign" , "#globalwarming" , "#enough" , "#equalrights" , "#payitforward" , "#freedomofreligion" , "#marchforourlives" , "#freedom" , "#impeachment" , "#hippies" , "#animalrights" , "#freedomofspeech" , "#freedomofthepress" , "#babyboomer" , "#lgbt" , "#bhfyp" , "#film" , "#actress" , "#hollywood" , "#actorslife" , "#comedy" , "#photography" , "#love" , "#movies" , "#artist" , "#training" , "#theater" , "#television" , "#movie" , "#music" , "#model" , "#fashion" , "#drama" , "#inspiration" , "#thebigbangtheory" , "#director" , "#filmgenre" , "#auditioning" , "#setlife" , "#thehellerapproach" , "#cinema" , "#bradheller" , "#nonmethodacting" , "#grouptheater" , "#art" , "#filmmaking"]
+    
+    #hashtag = [ "#modelphotography" , "#model" , "#modellife" , "#modelling" , "#modeling" , "#photography" , "#modelingagency" ,
+     #"#modelagency" , "#supermodel" , "#modelmanagement" , "#fashionmodel" , "#photomodel" , "#portrait" , "#fashionmodels" ,
+      #"#fashion" , "#models" , "#portraitphotography" , "#photo" , "#fashionphotography" , "#femalemodel" , "#modelo" , "#modeltest" ,
+       #"#fitmodel" , "#portraits" , "#like" , "#altgirl" , "#beautiful" , "#modelscout" , "#altmodel" , "#bhfyp" , "#ig" , "#testshoot" ,
+        #"#malemodels" , "#photoshoot" , "#modelsearch" , "#modelshoot" , "#modelos" , "#magazine" , "#prilaga" , "#photos" , "#pose" ,
+         #"#modelswanted" , "#modelstatus" , "#sexymodel" , "#follow" , "#face" , "#photoshooting" , "#photooftheday" , "#instamodel" ,
+          #"#fashionblogger" , "#bikinigirl" , "#wow" , "#camera" , "#poses" , "#posing" , "#photomodeling" , "#photogenic" ,
+           #"#fashioneditorial" , "#nikon" , "#beachbody" , "#model" , "#modeling" , "#highfashion" , "#pretty" , "#beautiful" ,
+            #"#sexy" , "#face" , "#beauty" , "#photoshoot" , "#studio" , "#studiolife" , "#bostonmodel" , "(or" , "wherever" ,
+             #"you’re" , "from)" , "#fashion" , "#editorial" , "#instamodel" , "#modeltowatch" , "#instamag" , "#magazine" ,
+              #"#catwalk" , "#runway" , "#fashionshow" , "#clavicles" , "#boudoir" , "#catalog" , "#vogue" , "#MAKEUP" , "#MUA" ,
+               #"#MAKEUPARTIST" , "#COSMETICS" , "#EYESHADOW" , "#EYES" , "#LIPS" , "#LIPSTICK" , "#MAKEUPADDICT" , "#MAKEUPJUNKIE" ,
+                #"#INSTAMAKEUP" , "#BEAUTIFUL" , "#BYME" , "#LOVE" , "#FACE" , "#PRETTY" , "#PICOFTHEDAY" , "#BLUSH" , "#HAIR" , "#FACE" ,
+                 #"#STYLIST" , "#STYLE" , "#WEDDING" , "#PORTRAIT" , "#BEAUTY" , "#ONFLEEK" , "#ONPOINT"]
 
     print('starting to like posts')
-    while a < hashtags: #hashtags number of hashtags to be searched
+    while a < 100: #hashtags number of hashtags to be searched
         try:
             browser.refresh()
             time.sleep(5)
@@ -264,55 +282,85 @@ def post_and_comment_liking():
            
 
             #select first post
-            while b < posts: #posts number of posts to be liked for each hashtag
+            while b < 50: #posts number of posts to be liked for each hashtag
                 print(hashtag[a])
                 try:
-                    print('liking Comments')
-                    #like post comments 20 of them
-                    comlike = browser.find_element_by_class_name('coreSpriteCommentLike')
-                    comlike.click()
-                    total += 1
-                    time.sleep(5)
+                    while c < 20:
+                        try:
+                            print('liking Comments')
+                            #like post comments 20 of them
+                            time.sleep(3)
+                            comlike = browser.find_element_by_class_name('glyphsSpriteComment_like')
+                            comlike.click()
+                            total += 1
+                            time.sleep(2)
+                        except:
+                            print('comment like failed')
+                            pass
+                        finally:
+                            c += 1
+                            print(c)
 
                     
 
                 except:
                     print('fail cycle, pass')
+                    
                     pass
 
                 finally:
-                    print(b)
+                    c = 0
                     b += 1
+                    print(b)
                     time.sleep(2)
                     # a += 1 next hashtage to be searched
-                    
-                if b % 20 == 0:
                     try:
                         heart = browser.find_element_by_class_name('glyphsSpriteHeart__outline__24__grey_9') #like story
                         heart.click()
                         print('Post liked')
                         time.sleep(2)
-                        comment = browser.find_element_by_xpath('/html/body/div[3]/div/div[2]/div/article/div[2]/section[3]/div/form/textarea')
-                        comment.send_keys('this is awesome! @offerohandbags #love #offerohandbags')
-                        time.sleep(1)
-                        comment.submit()
-                        time.sleep(1)
+                        print('com')
+                        time.sleep(2)
+                    except:
+                        pass
+                    
+                    try:
+                        selectcom = browser.find_element_by_xpath('/html/body/div[2]/div/div[2]/div/article/div[2]/section[1]/span[2]/button/span').click()
+                        time.sleep(3)
+                        commenthashtag = browser.find_element_by_xpath('/html/body/div[2]/div/div[2]/div/article/div[2]/section[3]/div/form/textarea')
+                        commenthashtag.send_keys(' ')
+                        commenthashtag = browser.find_element_by_xpath('/html/body/div[2]/div/div[2]/div/article/div[2]/section[3]/div/form/textarea')
+                        commenthashtag.send_keys('this is awesome! @offerohandbags @amddobbins91')
+                        time.sleep(3)
+                        commenthashtag.submit()
+                        
+                        time.sleep(4)
+                      
+                        print('commented')
                         total += 1
+                        
+                    except:
+                        pass
+                    
+                    try:
                         rightArrow = browser.find_element_by_class_name('HBoOv') #click right arrow to scroll through discovery feed
                         time.sleep(2)
                         rightArrow.click()
                         print('right arrow')
-                    except:
+                        time.sleep(3)
+                    except:    
                         pass
 
         except:
             print('pass')
+            browser.get('https://www.instagram.com/accounts/login/?source=auth_switcher')
+            print('site opened')
+            time.sleep(5)
             pass
 
         finally: # b reset for next loop. 
             print(hashtag[a] + ' cycle finished')
             print(a)
-            print('total likes ' + total)
             b = 0
             a += 1
             time.sleep(2)
@@ -354,6 +402,29 @@ def Run_Program():
         name = e1.get()
         password = e2.get()
         command = Log_In()
+        
+    except:
+        pass
+    
+    #try:
+        #time.sleep(5)
+        #command = Fonly()
+    #except:
+        #pass
+    
+    try:
+            
+        time.sleep(5)
+        command = post_and_comment_liking()
+        
+    except:
+        pass
+    
+    try:
+        time.sleep(5)
+        command = Uonly()
+        time.sleep(5)
+        
     except:
         pass
 
